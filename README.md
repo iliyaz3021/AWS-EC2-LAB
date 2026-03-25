@@ -26,7 +26,7 @@ After SSH-ing into the instance, I ran the following commands to transform the L
 
 ---
 
-## 3: Created the image (AMI)
+## 3: Created the image (AMI) for copy of server
 To ensure every new instance in the scaling group is identical, I created a custom AMI.
 
 * **Step:** `Instances` ➔ `Actions` ➔ `Image and templates` ➔ `Create Image`
@@ -34,19 +34,19 @@ To ensure every new instance in the scaling group is identical, I created a cust
 
 ---
 
-##  4: Launched Load Balancing & Auto Scaling 
+##  4: Launched Load Balancing & Auto Scaling to manage traffic load
 This is where the high-availability logic was applied.
 
-### 5. Created Target Group
+### 5. Created Target Group To SetUp Load Balancer
 * **Path:** `Target Groups` ➔ `Create` ➔ `Instances`
 * **Config:** Protocol: `HTTP` | Port: `80` | Name: `MyTargetGroup`
 
-### 6. Application Load Balancer (ALB)
+### 6. Created Application Load Balancer (ALB) for Distributing the Traffic Load To Servers
 * **Path:** `Load Balancers` ➔ `Create ALB` ➔ `Internet-facing`
 * **Network:** Selected **2 Subnets** across different Availability Zones (AZs) for redundancy.
 * **Listener:** Forwarding all Port 80 traffic ➔ `MyTargetGroup`.
 
-### 7. Auto Scaling Group (ASG)
+### 7. Auto Scaling Group (ASG) For Increasing and Decreasing the Servers Based On CPU Utilization
 * **Path:** `Auto Scaling Groups` ➔ `Create ASG` ➔ linked to `MyTemplate`.
 * **Capacity Settings:** * Desired: `2` (Always keep 2 running)
     * Min: `2` | Max: `4`
@@ -54,7 +54,7 @@ This is where the high-availability logic was applied.
 
 ---
 
-##   8: Validation & Stress Testing
+##   8: Validation & Stress Testing for checking load Balancing and Auto Scalling
 I performed two tests to ensure the architecture works as intended:
 
 * **LB Check:** Opened the `ALB DNS Name` in a browser. Every time I refreshed, the **hostname changed**. This proves the Load Balancer is successfully alternating traffic between instances in different AZs.
