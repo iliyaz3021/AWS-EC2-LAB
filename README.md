@@ -32,7 +32,6 @@ After SSH-ing into the instance, I ran the following commands to transform the L
 To ensure every new instance in the scaling group is identical, I created a custom AMI.
 
 * **Step:** `Instances` ➔ `Actions` ➔ `Image and templates` ➔ `Create Image`
-* **Name:** `MyWebAMI`
 * **Next:** I created a **Launch Template** named `MyTemplate`, linking it to `MyWebAMI` so the Auto Scaling Group knows what to launch.
 
 ---
