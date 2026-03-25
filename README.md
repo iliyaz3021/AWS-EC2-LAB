@@ -15,7 +15,7 @@
 
 ---
 
-##  2: Defined Web Server 
+##  2: Defined Web Server On EC2 Server
 After SSH-ing into the instance, I ran the following commands to transform the Linux instance into a functional web server:
 
 1. `sudo yum update -y` ➔ **Refreshed system repositories**
