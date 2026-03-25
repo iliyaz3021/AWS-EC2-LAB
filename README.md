@@ -2,7 +2,7 @@
 
 ---
 
-## 🛠 Phase 1: Initial EC2 Setup & Configuration
+##  Phase 1: Initial EC2 Setup & Configuration
 
 **AWS EC2:** `EC2 Dashboard` ➔ `Launch Instance`
 
