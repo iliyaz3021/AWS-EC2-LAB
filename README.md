@@ -2,7 +2,7 @@
 
 ---
 
-##  Phase 1: Initial EC2 Setup & Configuration
+## 1: Laucned EC2 Setup & Configuration
 
 **AWS EC2:** `EC2 Dashboard` ➔ `Launch Instance`
 
@@ -15,7 +15,7 @@
 
 ---
 
-##  Phase 2: Manual Web Server Bootstrapping
+##  2: Defined Web Server 
 After SSH-ing into the instance, I ran the following commands to transform the Linux instance into a functional web server:
 
 1. `sudo yum update -y` ➔ **Refreshed system repositories**
@@ -26,7 +26,7 @@ After SSH-ing into the instance, I ran the following commands to transform the L
 
 ---
 
-##  Phase 3: Creating the image (AMI)
+## 3: Created the image (AMI)
 To ensure every new instance in the scaling group is identical, I created a custom AMI.
 
 * **Step:** `Instances` ➔ `Actions` ➔ `Image and templates` ➔ `Create Image`
@@ -34,19 +34,19 @@ To ensure every new instance in the scaling group is identical, I created a cust
 
 ---
 
-## Phase 4: Load Balancing & Auto Scaling Implementation
+##  4: Launched Load Balancing & Auto Scaling 
 This is where the high-availability logic was applied.
 
-### 1. Target Group
+### 5. Created Target Group
 * **Path:** `Target Groups` ➔ `Create` ➔ `Instances`
 * **Config:** Protocol: `HTTP` | Port: `80` | Name: `MyTargetGroup`
 
-### 2. Application Load Balancer (ALB)
+### 6. Application Load Balancer (ALB)
 * **Path:** `Load Balancers` ➔ `Create ALB` ➔ `Internet-facing`
 * **Network:** Selected **2 Subnets** across different Availability Zones (AZs) for redundancy.
 * **Listener:** Forwarding all Port 80 traffic ➔ `MyTargetGroup`.
 
-### 3. Auto Scaling Group (ASG)
+### 7. Auto Scaling Group (ASG)
 * **Path:** `Auto Scaling Groups` ➔ `Create ASG` ➔ linked to `MyTemplate`.
 * **Capacity Settings:** * Desired: `2` (Always keep 2 running)
     * Min: `2` | Max: `4`
@@ -54,7 +54,7 @@ This is where the high-availability logic was applied.
 
 ---
 
-##  Phase 5: Validation & Stress Testing
+##   8: Validation & Stress Testing
 I performed two tests to ensure the architecture works as intended:
 
 * **LB Check:** Opened the `ALB DNS Name` in a browser. Every time I refreshed, the **hostname changed**. This proves the Load Balancer is successfully alternating traffic between instances in different AZs.
