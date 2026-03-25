@@ -6,9 +6,8 @@ The objective of this lab was to move from a single-point-of-failure setup to a 
 ---
 
 ## 🛠 Phase 1: Initial EC2 Setup & Configuration
-I started by launching a base instance to act as my "Golden Image."
 
-**AWS Console Path:** `EC2 Dashboard` ➔ `Launch Instance`
+**AWS EC2:** `EC2 Dashboard` ➔ `Launch Instance`
 
 * **Instance Details:** * Name: `MyWebServer`
     * AMI: `Amazon Linux 2023` (Architecture: x86_64)
@@ -61,7 +60,7 @@ This is where the high-availability logic was applied.
 
 ---
 
-##  Phase 5: Lab Validation & Stress Testing
+##  Phase 5: Validation & Stress Testing
 I performed two tests to ensure the architecture works as intended:
 
 * **LB Check:** Opened the `ALB DNS Name` in a browser. Every time I refreshed, the **hostname changed**. This proves the Load Balancer is successfully alternating traffic between instances in different AZs.
@@ -69,15 +68,3 @@ I performed two tests to ensure the architecture works as intended:
 * **Scaling Check:** I installed a stress tool on one instance to simulate high traffic:
     * `sudo yum install stress -y`
     * `stress --cpu 2 --timeout 300`
-* **Result:** After 2 minutes, AWS CloudWatch triggered the ASG, and I saw the instance count increase from **2 to 4** in the dashboard. **System scaled successfully.**
-
----
-
-###  Key Takeaways
-* Learned to separate the web server state from the infrastructure.
-* Understood how to use Launch Templates for automation.
-* Verified that ALB + ASG creates a self-healing system.
-
----
-
-**Would you like me to help you format a "Lessons Learned" section to add at the end to show your Lead that you've analyzed the process?**
