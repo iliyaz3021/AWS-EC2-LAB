@@ -1,7 +1,4 @@
-# AWS Project: Scalable & High-Availability Web Infrastructure
-
-##  Project Goal
-The objective of this lab was to move from a single-point-of-failure setup to a resilient, auto-scaling architecture on AWS. I configured a web server, captured it as a custom image, and deployed it behind a Load Balancer with an Auto Scaling Group.
+# AWS Project: EC2,SECURITY GROUPS,LOAD BALANCING,AUTO SCALLING
 
 ---
 
