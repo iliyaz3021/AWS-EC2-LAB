@@ -14,8 +14,8 @@ I started by launching a base instance to act as my "Golden Image."
     * AMI: `Amazon Linux 2023` (Architecture: x86_64)
     * Type: `t2.micro`
 * **Security Rules:**
-    * ✅ `SSH` (Port 22) ➔ Restricted to `My IP`
-    * ✅ `HTTP` (Port 80) ➔ Open to `0.0.0.0/0` (Anywhere)
+    *  `SSH` (Port 22) ➔ Restricted to `My IP`
+    *  `HTTP` (Port 80) ➔ Open to `0.0.0.0/0` (Anywhere)
 
 ---
 
@@ -32,7 +32,7 @@ After SSH-ing into the instance, I ran the following commands to transform the L
 
 ---
 
-##  Phase 3: Creating the "Golden Image" (AMI)
+##  Phase 3: Creating the image (AMI)
 To ensure every new instance in the scaling group is identical, I created a custom AMI.
 
 * **Step:** `Instances` ➔ `Actions` ➔ `Image and templates` ➔ `Create Image`
