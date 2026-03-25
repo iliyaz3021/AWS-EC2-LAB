@@ -22,9 +22,7 @@ After SSH-ing into the instance, I ran the following commands to transform the L
 2. `sudo yum install httpd -y` ➔ **Installed Apache Web Server**
 3. `sudo systemctl start httpd` ➔ **Initiated the service**
 4. `sudo systemctl enable httpd` ➔ **Ensured persistence on reboot**
-5. `echo "Hello from $(hostname)" | sudo tee /var/www/html/index.html` ➔ **Created a dynamic landing page to show the hostname**
-
-**Result:** Confirmed the Public IP shows the "Hello from..." message in the browser.
+5. `echo "Hello from $(hostname)" | sudo tee /var/www/html/index.html` ➔ **Created a simple page to show the hostname**
 
 ---
 
