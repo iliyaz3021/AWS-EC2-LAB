@@ -62,3 +62,104 @@ I performed two tests to ensure the architecture works as intended:
 * **Scaling Check:** I installed a stress tool on one instance to simulate high traffic:
     * `sudo yum install stress -y`
     * `stress --cpu 2 --timeout 300`
+ 
+
+---
+
+# 9: IAM Setup (Users, Roles, Permissions)
+
+**AWS IAM:** `IAM Dashboard` ➔ `Users / Roles`
+
+---
+
+## Created IAM User
+
+* Path: `IAM` ➔ `Users` ➔ `Create User`
+* Username: `DevUser`
+* Access:
+
+  * Console Access
+  * Programmatic Access
+
+---
+
+## Assigned Permissions
+
+* Attached policy: `AmazonS3FullAccess`
+* Used only required permissions (basic security practice)
+
+---
+
+## Created IAM Role for EC2
+
+* Path: `IAM` ➔ `Roles` ➔ `Create Role`
+* Use case: `EC2`
+* Policy: `AmazonS3ReadOnlyAccess`
+
+👉 This helps EC2 access S3 without using access keys
+
+---
+
+## Attached Role to EC2
+
+* Path: `EC2` ➔ `Instances` ➔ `Actions` ➔ `Security` ➔ `Modify IAM Role`
+* Selected role: `EC2-S3-Access-Role`
+
+---
+
+# 10: S3 Setup (Storage & Static Website)
+
+**AWS S3:** `S3 Dashboard` ➔ `Create Bucket`
+
+---
+
+## Created S3 Bucket
+
+* Bucket Name: `my-web-assets-bucket`
+* Region: Same as EC2
+* Public Access: Disabled block (for testing)
+
+---
+
+## Uploaded Files
+
+* Uploaded HTML file and sample assets
+* Checked object URL in browser
+
+---
+
+## Enabled Static Website Hosting
+
+* Path: `Bucket` ➔ `Properties` ➔ `Static Website Hosting`
+* Index file: `index.html`
+
+👉 Website was accessible using S3 endpoint
+
+---
+
+## Added Bucket Policy
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::my-web-assets-bucket/*"
+    }
+  ]
+}
+```
+
+---
+
+## Accessed S3 from EC2
+
+* Verified using IAM role (no access keys used)
+
+```bash
+aws s3 ls
+aws s3 cp s3://my-web-assets-bucket/index.html .
+```
