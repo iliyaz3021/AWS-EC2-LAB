@@ -163,3 +163,145 @@ I performed two tests to ensure the architecture works as intended:
 aws s3 ls
 aws s3 cp s3://my-web-assets-bucket/index.html .
 ```
+-----------------------------------------------------------------------------------------------------------------------------------
+#### Hands On Practice
+
+
+---
+
+# 🔐 6: IAM Setup (User & Role Configuration)
+
+**AWS IAM:** `IAM Dashboard`
+
+---
+
+## Created IAM User
+
+* Path: `IAM` ➔ `Users` ➔ `Create User`
+* Username: `DevUser`
+* Access:
+
+  * Console access
+  * Programmatic access
+
+---
+
+## Assigned Permissions
+
+* Attached policy: `AmazonS3FullAccess`
+
+---
+
+## Created IAM Role for EC2
+
+* Path: `IAM` ➔ `Roles` ➔ `Create Role`
+
+* Use case: `EC2`
+
+* Initially attached:
+
+  * `AmazonS3ReadOnlyAccess`
+
+---
+
+## Attached Role to EC2
+
+* Path: `EC2` ➔ `Instances` ➔ `Modify IAM Role`
+* Role: `EC2-S3-Access-Role`
+
+👉 EC2 can now access AWS services securely
+
+---
+
+## Updated IAM Role (During Testing)
+
+While uploading file from EC2 to S3, I got **AccessDenied error**
+
+**Reason:**
+
+* Role had only ReadOnly access
+
+**Fix:**
+
+* Added permission:
+
+  * `AmazonS3FullAccess`
+
+👉 This allowed uploading files to S3
+
+---
+
+# 🪣 7: S3 Setup (Storage & Static Website)
+
+**AWS S3:** `S3 Dashboard`
+
+---
+
+## Created S3 Bucket
+
+* Bucket Name: `my-web-assets-bucket012345`
+* Region: Same as EC2
+* Disabled block public access (for testing)
+
+---
+
+## Uploaded Files
+
+* Uploaded `index.html`
+
+```html
+<h1>Hello from S3</h1>
+```
+
+---
+
+## Enabled Static Website Hosting
+
+* Path: `Bucket` ➔ `Properties` ➔ `Static Website Hosting`
+* Index document: `index.html`
+
+👉 Accessed website using S3 endpoint URL
+
+---
+
+## Added Bucket Policy
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::my-web-assets-bucket012345/*"
+    }
+  ]
+}
+```
+
+---
+
+## Accessed S3 from EC2
+
+Verified connection using IAM role:
+
+```bash
+aws s3 ls
+aws s3 cp s3://my-web-assets-bucket012345/index.html .
+```
+
+👉 Successfully downloaded file
+
+---
+
+## Uploaded File from EC2 to S3
+
+```bash
+echo "Hello from EC2" > test.txt
+aws s3 cp test.txt s3://my-web-assets-bucket012345/
+```
+
+👉 File uploaded successfully after updating IAM permissions
+
+---
