@@ -1,4 +1,4 @@
-# AWS Services: EC2,SECURITY GROUPS,LOAD BALANCING,AUTO SCALLING,IAM,S3
+# AWS Services: EC2,SECURITY GROUPS,LOAD BALANCING,AUTO SCALLING,IAM,S3, full stack app with jenkins practice
 
 ---
 
@@ -303,5 +303,33 @@ aws s3 cp test.txt s3://my-web-assets-bucket012345/
 ```
 
 👉 File uploaded successfully after updating IAM permissions
+
+---
+
+
+---
+
+## What I Did
+
+I set up an automated deployment pipeline for our fullstack app using Jenkins and Docker.
+
+**Here's how it works:**
+
+I push code to GitHub → Jenkins automatically detects the push → Jenkins builds a Docker image of the app → Jenkins runs the container using docker-compose → App is up and running.
+
+**What this means:**
+
+Before: Every time I changed code, I had to manually build and run the app again.
+
+After: Now I just push to GitHub, and Jenkins handles everything automatically. No manual work needed.
+
+**Tools I used:**
+- GitHub → to store our code
+- Jenkins → to automate the build and deploy process
+- Docker → to package and run the app consistently
+
+**The flow in one line:**
+
+GitHub Push → Jenkins Triggers → Docker Build → Container Runs → App Deployed
 
 ---
