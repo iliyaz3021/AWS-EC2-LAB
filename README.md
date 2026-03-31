@@ -1,4 +1,4 @@
-# AWS Services: EC2,SECURITY GROUPS,LOAD BALANCING,AUTO SCALLING,IAM,S3, full stack app with jenkins practice
+# AWS Services: EC2,SECURITY GROUPS,LOAD BALANCING,AUTO SCALLING,IAM,S3, full stack app with jenkins practice, Practiced redis and understanding between services
 
 ---
 
@@ -333,3 +333,24 @@ After: Now I just push to GitHub, and Jenkins handles everything automatically. 
 GitHub Push → Jenkins Triggers → Docker Build → Container Runs → App Deployed
 
 ---
+
+
+# System Flow (Frontend → Backend → Redis)
+ ## Frontend to Backend
+
+User Action → React (Frontend) → API Call (Axios) → Flask Backend
+
+## First Login (No Cache)
+
+Frontend → /login → Backend → Check Redis ❌ (MISS)
+→ Query Database → Verify Password (bcrypt)
+→ Store User in Redis (SETEX)
+→ Response to Frontend
+→ ⏱️ Latency: High 
+
+## Second Login (With Cache)
+
+Frontend → /login → Backend → Check Redis ✅ (HIT)
+→ Get User from Redis → Verify Password 
+→ Response to Frontend
+→ ⏱️ Latency: Medium 
