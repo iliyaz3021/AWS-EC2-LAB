@@ -340,7 +340,7 @@ GitHub Push → Jenkins Triggers → Docker Build → Container Runs → App Dep
 
 User Action → React (Frontend) → API Call (Axios) → Flask Backend
 
-## First Login (No Cache)
+## First Login 
 
 Frontend → /login → Backend → Check Redis ❌ (MISS)
 → Query Database → Verify Password (bcrypt)
