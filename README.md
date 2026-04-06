@@ -1,4 +1,4 @@
-# AWS Services: EC2,SECURITY GROUPS,LOAD BALANCING,AUTO SCALLING,IAM,S3, full stack app with jenkins practice, Practiced redis and understanding between services
+# AWS Services: EC2,SECURITY GROUPS,LOAD BALANCING,AUTO SCALLING,IAM,S3, full stack app with jenkins practice, Practiced redis and understanding between services, VPC
 
 ---
 
@@ -354,3 +354,43 @@ Frontend → /login → Backend → Check Redis ✅ (HIT)
 → Get User from Redis → Verify Password 
 → Response to Frontend
 → ⏱️ Latency: Medium 
+
+---
+
+
+
+# vpc
+## public subnet ->web server( Accessible from internet)
+## Private Subnet -> Data Base server(No internet Access)
+## NAT Gateway   -> Allows orivate instance to download updates securly
+
+
+## Step 1: Created VPC with advanced settings
+. VPC name → "my-app-vpc"
+. CIDR → 10.0.0.0/16
+. Availability Zones → 2 (for high availability)
+. Public subnets → 2 (10.0.1.0/24, 10.0.2.0/24)
+.  Private subnets → 2 (10.0.3.0/24, 10.0.4.0/24)
+. NAT Gateway → 1 per AZ 
+. IGW → Auto-created 
+
+## Step 2: Launch Public web server
+. Name → "Public-Web-Server"
+, Subnet → public-subnet-az1
+. Auto-assign public IP → ENABLE
+. Security group → Allow HTTP(80) from 0.0.0.0/0
+. Security group → Allow SSH(22) from My IP
+. User data → httpd installation script
+
+
+## Step 3: Launched Private Database Server
+. Name → "Private-DB-Server"
+. Subnet → private-subnet-az1
+. Auto-assign public IP → DISABLE (CRITICAL)
+. Security group → No direct SSH from internet
+
+
+## Step 4: Test public sever
+. copy public ip of public webserver
+
+
