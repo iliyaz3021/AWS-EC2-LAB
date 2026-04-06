@@ -392,5 +392,12 @@ Frontend → /login → Backend → Check Redis ✅ (HIT)
 
 ## Step 4: Test public sever
 . copy public ip of public webserver
+. Open browser → http://<public-ip>
+. Web page loads
 
-
+## Step 5: Test Private Server's Internet Access
+. Go to EC2 Console → Select Private-DB-Server
+. Click "Connect" → Session Manager tab
+. Run: curl -s http://icanhazip.com
+. Output shows NAT Gateway's IP (not instance's IP)
+        (Proves private instance uses NAT to reach internet)
