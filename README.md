@@ -401,3 +401,56 @@ Frontend → /login → Backend → Check Redis ✅ (HIT)
 . Run: curl -s http://icanhazip.com
 . Output shows NAT Gateway's IP (not instance's IP)
         (Proves private instance uses NAT to reach internet)
+
+---
+# AWS Practice Summary
+### IAM (Identity and Access Management)
+### Users & Groups
+
+Create User → Create Group → Assign Permissions to Group → Add User to Group → User inherits permissions
+
+### Policies
+
+Write JSON Policy → Attach to Group → Control access (S3 ReadOnly, etc.)
+
+### Key Concepts
+
+Least Privilege → Give only required access
+Group-based Access → Easy to manage multiple users
+Permissions = Combined if user in multiple groups
+
+## S3 (Simple Storage Service)
+
+Create Bucket → Upload Files → Enable Static Hosting → Access via URL
+
+### Security
+
+S3 Private by default → Add Bucket Policy for access → Control public/private access
+
+### IAM + S3 Integration
+
+Create Policy → Attach to Group → Add User → Access S3 based on permissions
+
+## AWS CloudFormation (Infrastructure as Code)
+
+Write YAML Template → Create Stack → AWS creates resources automatically
+
+Example Flow
+
+Write Template → Upload → Create Stack → Resources Created → Update/Delete Stack
+
+### Key Concepts
+
+Stack = Collection of resources
+Template = Code (YAML/JSON)
+Automation → No manual setup
+
+### EC2 + AMI
+
+Find AMI ID → Launch EC2 Instance → Use in CloudFormation
+
+### AMI
+
+AMI = Pre-configured OS template
+Region-specific → Different AMI per region
+Use SSM → Get latest AMI automatically
