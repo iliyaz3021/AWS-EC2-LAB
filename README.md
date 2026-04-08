@@ -454,3 +454,18 @@ Find AMI ID → Launch EC2 Instance → Use in CloudFormation
 AMI = Pre-configured OS template
 Region-specific → Different AMI per region
 Use SSM → Get latest AMI automatically
+
+
+---
+
+## CloudFront
+
+Amazon CloudFront is a Content Delivery Network (CDN) that distributes content through global edge locations to reduce latency and improve performance. It caches content closer to users, ensuring faster delivery and better user experience.
+
+ ## Route 53
+
+Amazon Route 53 is a scalable Domain Name System (DNS) service that translates domain names into IP addresses. It also provides routing policies and health checks to ensure high availability and reliable traffic management.
+
+## CI/CD Basics
+
+CI/CD (Continuous Integration and Continuous Delivery/Deployment) is a DevOps practice that automates the process of building, testing, and deploying applications. CI focuses on integrating code changes and running tests, while CD ensures that the application is delivered or deployed to production efficiently and reliably.
