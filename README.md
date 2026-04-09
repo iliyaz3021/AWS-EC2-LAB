@@ -455,6 +455,19 @@ AMI = Pre-configured OS template
 Region-specific → Different AMI per region
 Use SSM → Get latest AMI automatically
 
+---
+
+## VPC (Practical)
+
+User sends request → Internet Gateway (IGW) →
+→ Public Subnet → EC2 (Web Server) →
+→ Private Subnet → EC2 (Database)
+
+→ Response goes back same path → Website loads
+
+→ Private EC2 (if needs internet) → NAT Gateway → Internet → Updates done
+
+Used to create secure network where frontend is public and backend is protected
 
 ---
 
@@ -469,3 +482,5 @@ Amazon Route 53 is a scalable Domain Name System (DNS) service that translates d
 ## CI/CD Basics
 
 CI/CD (Continuous Integration and Continuous Delivery/Deployment) is a DevOps practice that automates the process of building, testing, and deploying applications. CI focuses on integrating code changes and running tests, while CD ensures that the application is delivered or deployed to production efficiently and reliably.
+
+
