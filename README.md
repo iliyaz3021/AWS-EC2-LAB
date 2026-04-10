@@ -484,3 +484,19 @@ Amazon Route 53 is a scalable Domain Name System (DNS) service that translates d
 CI/CD (Continuous Integration and Continuous Delivery/Deployment) is a DevOps practice that automates the process of building, testing, and deploying applications. CI focuses on integrating code changes and running tests, while CD ensures that the application is delivered or deployed to production efficiently and reliably.
 
 
+---
+## Jenkins CI/CD (Practical)
+
+User pushes code → GitHub Repository →
+→ Jenkins detects changes (Webhook/Polling) →
+→ Pipeline starts (Build Stage) →
+→ Install dependencies & run build →
+
+→ Test Stage → Run unit/integration tests →
+→ Deploy Stage →
+→ Application deployed to Server (EC2 / Local / Cloud)
+
+→ If build fails → Pipeline stops → Error logs generated
+→ If success → Application updated automatically
+
+
